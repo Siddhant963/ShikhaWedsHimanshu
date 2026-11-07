@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shikha & Himanshu | Wedding Invitation</title>
+
+<style>
+:root {
+  --maroon: #711d32;
+  --deep: #421321;
+  --gold: #c6a15b;
+  --cream: #fff8ed;
+  --pink: #f4e2df;
+  --text: #4b3030;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 10%, #f4e2df 0, transparent 30%),
+    var(--cream);
+}
+
+button { font: inherit; }
+
+header {
+  text-align: center;
+  padding: 55px 20px 45px;
+  color: var(--cream);
+  background:
+    linear-gradient(#451321df, #451321ee),
+    radial-gradient(circle, #8e4550, #421321);
+  border-bottom: 5px double var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before,
+header::after {
+  content: "❋";
+  position: absolute;
+  color: #d8b56e;
+  font-size: 115px;
+  opacity: .25;
+  top: 15px;
+}
+
+header::before { left: 4%; }
+header::after { right: 4%; }
+
+.om {
+  color: #e8c77d;
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: #f1d99e;
+}
+
+h1 {
+  font-size: clamp(40px, 8vw, 76px);
+  font-weight: normal;
+  margin: 18px 0 8px;
+  color: #fff4d9;
+}
+
+.ampersand { color: var(--gold); font-style: italic; }
+
+.subtitle {
+  font-size: 18px;
+  font-style: italic;
+  color: #f5dfbb;
+}
+
+.invite-line {
+  margin-top: 24px;
+  color: #f5dfbb;
+  line-height: 1.8;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #fffaf2f5;
+  border-bottom: 1px solid #ddc48d;
+  backdrop-filter: blur(8px);
+}
+
+nav button {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--maroon);
+  border-radius: 30px;
+  padding: 10px 17px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+nav button:hover,
+nav button.active {
+  color: white;
+  background: var(--maroon);
+  border-color: var(--gold);
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 28px 18px 55px;
+}
+
+.page { display: none; animation: fade .4s ease; }
+.page.active { display: block; }
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-heading {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.section-heading .symbol {
+  color: var(--gold);
+  font-size: 30px;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: clamp(28px, 5vw, 42px);
+  color: var(--maroon);
+  margin: 8px 0;
+}
+
+.section-heading p { color: #866b5a; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  position: relative;
+  padding: 28px 22px;
+  text-align: center;
+  background: #fffdf8;
+  border: 1px solid #d9bd80;
+  outline: 1px solid #eadbb8;
+  outline-offset: -7px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px #4b1c2710;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px #4b1c2720;
+}
+
+.icon {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--pink);
+  border: 1px solid var(--gold);
+  font-size: 34px;
+}
+
+.card h3 {
+  color: var(--maroon);
+  font-size: 23px;
+  font-weight: normal;
+  margin: 10px 0;
+}
+
+.card p { line-height: 1.7; font-size: 15px; }
+
+.date-label {
+  color: #9a7437;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.featured {
+  background: linear-gradient(145deg, #fffaf0, #f2dfdc);
+  padding: 35px 22px;
+  border-radius: 12px;
+  border: 1px solid var(--gold);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.featured .big-icon { font-size: 50px; }
+
+.featured p {
+  max-width: 650px;
+  margin: 12px auto;
+  line-height: 1.9;
+}
+
+.photo-art {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #f4e3d4, #dfb7b1);
+  border: 1px solid #d7b56c;
+  font-size: 65px;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-art::after {
+  content: "❀  ✦  ❀";
+  position: absolute;
+  bottom: 8px;
+  font-size: 17px;
+  color: #8b5c36;
+  letter-spacing: 8px;
+}
+
+.photo-card {
+  padding: 12px 12px 20px;
+}
+
+.photo-card .photo-art { margin-bottom: 15px; }
+
+.photo-card h3 { margin-bottom: 5px; }
+
+.note {
+  margin-top: 25px;
+  padding: 18px;
+  text-align: center;
+  background: #f7eae2;
+  border-left: 3px solid var(--gold);
+  line-height: 1.8;
+}
+
+.action-button {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  background: var(--maroon);
+  color: white;
+  padding: 12px 22px;
+  margin-top: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.action-button:hover { background: var(--deep); }
+
+footer {
+  text-align: center;
+  padding: 35px 15px;
+  color: #f8e9ce;
+  background: var(--deep);
+  border-top: 4px double var(--gold);
+  line-height: 1.9;
+}
+
+footer .floral { color: var(--gold); font-size: 26px; }
+
+@media (max-width: 600px) {
+  header { padding: 42px 15px 35px; }
+  header::before, header::after { font-size: 65px; }
+  nav { gap: 3px; padding: 8px 4px; }
+  nav button { padding: 9px 11px; font-size: 13px; }
+  main { padding: 15px 12px 35px; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Front-page couple artwork */
+.hero-art {
+  width: min(820px, 94%);
+  margin: 24px auto 22px;
+  padding: 8px;
+  background: linear-gradient(135deg, #f5dfaa, #a87932, #fff0c7, #b58b45);
+  border: 1px solid #f0d99b;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px #16070b55;
+  position: relative;
+}
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid #f8e9c8;
+  border-radius: 5px;
+}
+.hero-art-caption {
+  margin: 10px 0 0;
+  color: #f1d99e;
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+@media (max-width: 600px) {
+  .hero-art { width: 100%; padding: 5px; margin: 20px auto; }
+  .hero-art img { max-height: 300px; }
+  .hero-art-caption { font-size: 11px; }
+}
+
+
+/* Real portraits in matching traditional gold frames */
+.photo-art.photo-image {
+  min-height: 0;
+  padding: 7px;
+  background: linear-gradient(135deg, #f5dfaa, #a87932, #fff0c7, #b58b45);
+  border: 1px solid #d7b56c;
+}
+.photo-art.photo-image::after { content: none; }
+.photo-art.photo-image img {
+  display: block;
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  object-position: center 25%;
+  border: 2px solid #fff1d2;
+  border-radius: 3px;
+}
+.photo-card .photo-caption {
+  color: #866b5a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .photo-art.photo-image img { height: 390px; }
+}
+
+
+/* Responsive wedding invitation enhancements */
+:root { color-scheme: light; }
+img { max-width: 100%; }
+body { overflow-wrap: break-word; }
+header { padding-inline: clamp(14px, 4vw, 48px); }
+header::before, header::after { pointer-events: none; }
+nav { gap: clamp(3px, 1vw, 8px); }
+nav button { min-height: 42px; }
+main { width: 100%; }
+.card-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.home-portraits { margin-top: 28px; }
+.home-portraits .section-heading { margin-top: 20px; }
+.home-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.home-photo {
+  min-width: 0;
+  margin: 0;
+  padding: 7px;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f5dfaa, #a87932, #fff0c7, #b58b45);
+  box-shadow: 0 8px 24px #4b1c2710;
+}
+.home-photo img {
+  display: block;
+  width: 100%;
+  height: clamp(190px, 27vw, 320px);
+  object-fit: cover;
+  object-position: center 25%;
+  border: 2px solid #fff1d2;
+  border-radius: 4px;
+}
+.home-photo figcaption {
+  padding: 10px 4px 5px;
+  text-align: center;
+  color: var(--maroon);
+  font-size: clamp(14px, 1.5vw, 17px);
+}
+.event-date {
+  display: inline-block;
+  margin: 8px auto 10px;
+  padding: 7px 11px;
+  border: 1px solid #d7b56c;
+  border-radius: 30px;
+  background: #fff3d7;
+  color: #75431e;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.45;
+}
+.event-time { color: #6d4b3d; font-weight: bold; }
+.venue-panel {
+  margin-top: 26px;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fffaf0, #f2dfdc);
+  text-align: center;
+  box-shadow: 0 8px 25px #4b1c2710;
+}
+.venue-panel h3 { color: var(--maroon); font-size: clamp(22px, 3vw, 29px); font-weight: normal; margin: 8px 0; }
+.venue-panel p { line-height: 1.8; margin: 6px 0; }
+.event-card { display: flex; flex-direction: column; align-items: center; }
+.event-card p { margin-top: 5px; }
+@media (max-width: 700px) {
+  .home-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-photo img { height: clamp(190px, 48vw, 300px); }
+  header::before, header::after { font-size: clamp(45px, 12vw, 70px); top: 8px; }
+  .eyebrow { letter-spacing: 2px; line-height: 1.7; }
+  .hero-art img { max-height: none; object-fit: contain; }
+}
+@media (max-width: 420px) {
+  nav { position: sticky; padding: 7px 5px; }
+  nav button { flex: 1 1 calc(50% - 6px); padding: 9px 6px; font-size: 12px; }
+  main { padding-inline: 10px; }
+  .home-photo-grid { grid-template-columns: 1fr; }
+  .home-photo img { height: auto; max-height: 480px; object-fit: contain; }
+  .card { padding: 24px 18px; }
+  .invite-line { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+/* Indian wedding home-page ambience: drifting petals, glowing mandala, and diyas */
+header { isolation: isolate; }
+header::before, header::after { z-index: -1; animation: mandalaGlow 6s ease-in-out infinite alternate; }
+header::after { animation-delay: -3s; }
+.heritage-decor {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 0;
+  overflow: hidden;
+}
+header > :not(.heritage-decor) { position: relative; z-index: 1; }
+.floating-petal {
+  position: absolute;
+  top: -35px;
+  color: #efc66c;
+  opacity: 0;
+  font-size: 19px;
+  animation: petalDrift var(--duration, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  filter: drop-shadow(0 0 5px #f4ce7560);
+}
+.floating-petal:nth-child(1) { left: 7%; --duration: 13s; --delay: -3s; }
+.floating-petal:nth-child(2) { left: 19%; --duration: 16s; --delay: -10s; color: #e8a6a0; }
+.floating-petal:nth-child(3) { left: 32%; --duration: 14s; --delay: -7s; }
+.floating-petal:nth-child(4) { left: 68%; --duration: 15s; --delay: -11s; color: #e8a6a0; }
+.floating-petal:nth-child(5) { left: 82%; --duration: 12s; --delay: -5s; }
+.floating-petal:nth-child(6) { left: 94%; --duration: 17s; --delay: -13s; color: #e8a6a0; }
+@keyframes petalDrift {
+  0% { transform: translate3d(0, -20px, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: .7; }
+  50% { transform: translate3d(24px, 220px, 0) rotate(170deg); opacity: .65; }
+  90% { opacity: .25; }
+  100% { transform: translate3d(-20px, 480px, 0) rotate(320deg); opacity: 0; }
+}
+@keyframes mandalaGlow {
+  from { opacity: .15; transform: scale(.96) rotate(-4deg); }
+  to { opacity: .32; transform: scale(1.04) rotate(4deg); }
+}
+.hero-art {
+  animation: heroReveal 1.1s cubic-bezier(.2,.7,.2,1) both;
+  transform-origin: center;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(22px) scale(.97); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.om { animation: omGlow 3.5s ease-in-out infinite; }
+@keyframes omGlow {
+  0%, 100% { text-shadow: 0 0 4px #f4d99555; }
+  50% { text-shadow: 0 0 18px #f4d995cc, 0 0 30px #c6a15b66; }
+}
+.cultural-diyas {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 6vw, 55px);
+  margin: 24px auto 0;
+  color: #f6d88f;
+  font-size: clamp(23px, 4vw, 34px);
+}
+.cultural-diyas span { display: inline-block; animation: diyaFlicker 2.1s ease-in-out infinite; }
+.cultural-diyas span:nth-child(2) { animation-delay: -.7s; }
+.cultural-diyas span:nth-child(3) { animation-delay: -1.4s; }
+@keyframes diyaFlicker {
+  0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 2px #f8ce72); }
+  50% { transform: translateY(-3px) scale(1.08); filter: drop-shadow(0 0 10px #f8ce72); }
+}
+.story-portrait-layout { display: grid; gap: 18px; }
+.bride-feature-photo { width: min(420px, 100%); margin: 0 auto; }
+.bride-feature-photo img { height: clamp(360px, 55vw, 500px); object-position: center 20%; }
+.individual-portraits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; width: min(760px, 100%); margin: 0 auto; }
+.individual-portraits .home-photo img { height: clamp(260px, 36vw, 390px); }
+.couple-feature-photo { width: min(760px, 100%); margin: 0 auto; }
+.couple-feature-photo img { height: clamp(280px, 42vw, 450px); object-fit: cover; object-position: center 25%; }
+.home-event-summary { margin-top: 48px; padding-top: 10px; }
+.mini-event-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
+.mini-event {
+  text-align: center; background: #fffdf8; border: 1px solid #d9bd80; border-radius: 10px;
+  padding: 18px 12px; box-shadow: 0 8px 22px #4b1c2710; animation: riseIn .7s both;
+}
+.mini-event:nth-child(2) { animation-delay: .12s; }
+.mini-event:nth-child(3) { animation-delay: .24s; }
+.mini-event:nth-child(4) { animation-delay: .36s; }
+.mini-event-icon { font-size: 28px; }
+.mini-event h3 { color: var(--maroon); font-weight: normal; font-size: 20px; margin: 9px 0; }
+.mini-event p { margin: 6px 0; line-height: 1.5; font-size: 14px; }
+.mini-date { font-weight: bold; color: #75431e; }
+.mini-time { color: #866b5a; }
+@keyframes riseIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.home-venue, .schedule-venue {
+  text-align: center; padding: 22px 14px; margin-top: 18px;
+  background: linear-gradient(145deg, #fffaf0, #f2dfdc); border: 1px solid var(--gold); border-radius: 12px;
+}
+.venue-lotus { font-size: 25px; color: #a87932; }
+.home-venue-label { margin: 7px 0 0; color: #866b5a; }
+.home-venue h3, .schedule-venue h3 { color: var(--maroon); font-weight: normal; font-size: 25px; margin: 8px 0; }
+.home-venue p, .schedule-venue p { margin: 6px 0; line-height: 1.7; }
+.party-schedule { margin-top: 44px; }
+.schedule-list { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+.schedule-row {
+  display: grid; grid-template-columns: 82px minmax(0, 1fr) 44px; gap: 17px; align-items: center;
+  padding: 15px 18px; background: #fffdf8; border: 1px solid #d9bd80; border-radius: 10px;
+  box-shadow: 0 5px 18px #4b1c270b; transition: transform .2s, box-shadow .2s;
+}
+.schedule-row:hover { transform: translateY(-2px); box-shadow: 0 9px 22px #4b1c2717; }
+.schedule-date { text-align: center; background: #f5e4c4; border: 1px solid #d7b56c; border-radius: 8px; padding: 7px 4px; color: var(--maroon); }
+.schedule-date span, .schedule-date small { display: block; font-size: 10px; letter-spacing: 1px; }
+.schedule-date strong { display: block; font-size: 30px; line-height: 1.15; font-weight: normal; }
+.schedule-details h3 { color: var(--maroon); font-size: 21px; font-weight: normal; margin: 0 0 4px; }
+.schedule-details p { margin: 3px 0; line-height: 1.45; font-size: 14px; }
+.schedule-time { display: inline-block; margin-top: 4px; color: #795324; font-weight: bold; font-size: 14px; }
+.schedule-symbol { font-size: 27px; text-align: center; }
+@media (max-width: 760px) {
+  .mini-event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .schedule-row { grid-template-columns: 68px minmax(0, 1fr) 30px; gap: 10px; padding: 12px; }
+}
+@media (max-width: 480px) {
+  .individual-portraits { gap: 10px; }
+  .individual-portraits .home-photo { padding: 4px; }
+  .individual-portraits .home-photo img { height: 260px; }
+  .individual-portraits .home-photo figcaption { font-size: 13px; }
+  .bride-feature-photo img { height: 360px; }
+  .couple-feature-photo img { height: auto; max-height: 420px; }
+  .mini-event-grid { gap: 9px; }
+  .mini-event { padding: 14px 8px; }
+  .mini-event h3 { font-size: 17px; }
+  .mini-event p { font-size: 12px; }
+  .schedule-row { grid-template-columns: 58px minmax(0, 1fr); }
+  .schedule-symbol { display: none; }
+  .schedule-date strong { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-petal, header::before, header::after, .hero-art, .om, .cultural-diyas span, .mini-event {
+    animation: none !important; transform: none !important; filter: none !important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="heritage-decor" aria-hidden="true">
+    <span class="floating-petal">✿</span><span class="floating-petal">❀</span>
+    <span class="floating-petal">✿</span><span class="floating-petal">❀</span>
+    <span class="floating-petal">✿</span><span class="floating-petal">❀</span>
+  </div>
+  <div class="om">ॐ</div>
+  <div class="eyebrow">With the blessings of our families</div>
+  <h1>Shikha <span class="ampersand">&</span> Himanshu</h1>
+  <figure class="hero-art">
+    <img src="assets/couple-front-page.jpg" alt="Illustrated couple artwork for Shikha and Himanshu's wedding invitation">
+  </figure>
+  <div class="subtitle">Two hearts, one beautiful journey</div>
+  <div class="invite-line">
+    Together with our families<br>
+    we invite you to celebrate our wedding
+  </div>
+  <div class="cultural-diyas" aria-hidden="true"><span>🪔</span><span>🪔</span><span>🪔</span></div>
+</header>
+
+<nav aria-label="Wedding sections">
+  <button class="active" data-page="story">❀ Our Story</button>
+  <button data-page="photos">♡ Photos</button>
+  <button data-page="events">✧ Things to Do</button>
+  <button data-page="party">♛ Wedding Party</button>
+</nav>
+
+<main>
+
+<!-- FEATURE 1: OUR STORY -->
+<section id="story" class="page active">
+  <div class="section-heading">
+    <div class="symbol">❦</div>
+    <h2>Our Beautiful Story</h2>
+    <p>A little love, a little destiny, and a lifetime together.</p>
+  </div>
+
+  <div class="featured">
+    <div class="big-icon">💑</div>
+    <h2>Shikha & Himanshu</h2>
+    <p>
+      Some journeys are written in the stars. Ours is a story of
+      love, laughter, family, and the promise of forever.
+      We are delighted to begin this new chapter and share our
+      special day with the people who mean the most to us.
+    </p>
+    <div class="floral">❀ ✦ ❀</div>
+  </div>
+
+
+  <section class="home-portraits" aria-labelledby="home-portraits-title">
+    <div class="section-heading">
+      <div class="symbol">❀ ✦ ❀</div>
+      <h2 id="home-portraits-title">A Glimpse of Our Celebration</h2>
+      <p>Three portraits, one beautiful beginning.</p>
+    </div>
+    <div class="story-portrait-layout">
+      <figure class="home-photo bride-feature-photo">
+        <img src="assets/bride-portrait.jpg" alt="Shikha, the bride, in a festive lehenga" loading="lazy">
+        <figcaption>The Bride · Shikha</figcaption>
+      </figure>
+      <div class="individual-portraits">
+        <figure class="home-photo">
+          <img src="assets/bride-portrait.jpg" alt="Portrait of Shikha in her festive outfit" loading="lazy">
+          <figcaption>Shikha</figcaption>
+        </figure>
+        <figure class="home-photo">
+          <img src="assets/groom-portrait.jpg" alt="Portrait of Himanshu in a dark suit and red tie" loading="lazy">
+          <figcaption>Himanshu</figcaption>
+        </figure>
+      </div>
+      <figure class="home-photo couple-feature-photo">
+        <img src="assets/couple-portrait.jpg" alt="Shikha and Himanshu together in a flower garden" loading="lazy">
+        <figcaption>Together, Forever</figcaption>
+      </figure>
+    </div>
+    <div style="text-align:center; margin-top:18px">
+      <button class="action-button" type="button" data-go-page="photos">View All Photos</button>
+    </div>
+  </section>
+
+
+
+
+  <div class="card-grid">
+    <article class="card">
+      <div class="icon">🌸</div>
+      <h3>How It Began</h3>
+      <p>
+        Every beautiful story begins with a special moment.
+        Ours brought two hearts together and gave us a reason
+        to dream about forever.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">💞</div>
+      <h3>A Promise of Love</h3>
+      <p>
+        With love and the blessings of our families,
+        we look forward to sharing every tomorrow,
+        every celebration, and every little moment.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🪷</div>
+      <h3>A New Beginning</h3>
+      <p>
+        A new chapter, new memories, and a lifetime of
+        togetherness. Your blessings will make our celebration
+        even more meaningful.
+      </p>
+    </article>
+  </div>
+
+  <section class="home-event-summary" aria-labelledby="home-events-title">
+    <div class="section-heading">
+      <div class="symbol">🪔 ❀ 🪔</div>
+      <h2 id="home-events-title">Save the Wedding Dates</h2>
+      <p>Four celebrations, three beautiful days, a lifetime of memories.</p>
+    </div>
+    <div class="mini-event-grid">
+      <article class="mini-event">
+        <span class="mini-event-icon">💍</span>
+        <h3>Engagement</h3>
+        <p class="mini-date">9 December 2026</p>
+        <p class="mini-time">7:00 PM onwards</p>
+      </article>
+      <article class="mini-event">
+        <span class="mini-event-icon">🌿</span>
+        <h3>Mehndi</h3>
+        <p class="mini-date">10 December 2026</p>
+        <p class="mini-time">Timing to be announced</p>
+      </article>
+      <article class="mini-event">
+        <span class="mini-event-icon">🌼</span>
+        <h3>Haldi</h3>
+        <p class="mini-date">10 December 2026</p>
+        <p class="mini-time">Timing to be announced</p>
+      </article>
+      <article class="mini-event">
+        <span class="mini-event-icon">🪔</span>
+        <h3>Wedding Ceremony</h3>
+        <p class="mini-date">11 December 2026</p>
+        <p class="mini-time">7:00 PM onwards</p>
+      </article>
+    </div>
+    <div class="home-venue">
+      <span class="venue-lotus">❀ ॐ ❀</span>
+      <p class="home-venue-label">All celebrations at</p>
+      <h3>Hotel Indian Roller</h3>
+      <p>Jagadhari Road, Ambala Cantt</p>
+      <button class="action-button" type="button" data-go-page="events">Full Celebration Details</button>
+    </div>
+  </section>
+</section>
+
+<!-- FEATURE 2: PHOTOS -->
+<section id="photos" class="page">
+  <div class="section-heading">
+    <div class="symbol">❀</div>
+    <h2>Our Memories</h2>
+    <p>Little moments that become lifelong memories.</p>
+  </div>
+
+  <div class="card-grid">
+    <article class="card photo-card">
+      <div class="photo-art photo-image">
+        <img src="assets/couple-portrait.jpg" alt="Shikha and Himanshu together beneath warm wedding lights" loading="lazy">
+      </div>
+      <h3>Together, Forever</h3>
+      <p class="photo-caption">Two hearts, one beautiful journey, and a lifetime of memories to come.</p>
+    </article>
+
+    <article class="card photo-card">
+      <div class="photo-art photo-image">
+        <img src="assets/bride-portrait.jpg" alt="Bride portrait in a festive lehenga" loading="lazy">
+      </div>
+      <h3>The Bride</h3>
+      <p class="photo-caption">A beautiful portrait celebrating the bride and her special day.</p>
+    </article>
+
+    <article class="card photo-card">
+      <div class="photo-art photo-image">
+        <img src="assets/groom-portrait.jpg" alt="Groom portrait in a dark suit with a red tie" loading="lazy">
+      </div>
+      <h3>The Groom</h3>
+      <p class="photo-caption">A portrait of the groom as the celebrations begin.</p>
+    </article>
+
+    <article class="card photo-card">
+      <div class="photo-art">🌿</div>
+      <h3>Mehndi Moments</h3>
+      <p>Colourful traditions, music, laughter, and family.</p>
+    </article>
+  </div>
+
+  <div class="note">
+    <strong>More memories to come</strong><br>
+    The couple, bride, and groom portraits are now included above.
+    As you share more wedding photos, we can add them here and place ceremony-specific images in the matching sections.
+  </div>
+</section>
+
+<!-- FEATURE 3: THINGS TO DO -->
+<section id="events" class="page">
+  <div class="section-heading">
+    <div class="symbol">✧</div>
+    <h2>Wedding Celebrations</h2>
+    <p>Come for the rituals, stay for the memories!</p>
+  </div>
+
+
+  <div class="card-grid">
+    <article class="card event-card">
+      <div class="icon">💍</div>
+      <div class="date-label">Celebration 01</div>
+      <h3>Engagement</h3>
+      <div class="event-date">Wednesday · 9 December 2026</div>
+      <p class="event-time">7:00 PM onwards</p>
+      <p>Join us as we celebrate the beginning of this beautiful journey together.</p>
+    </article>
+
+    <article class="card event-card">
+      <div class="icon">🌿</div>
+      <div class="date-label">Celebration 02</div>
+      <h3>Mehndi</h3>
+      <div class="event-date">Thursday · 10 December 2026</div>
+      <p class="event-time">Timing to be announced</p>
+      <p>Henna, joyful music, colourful traditions, and treasured moments with loved ones.</p>
+    </article>
+
+    <article class="card event-card">
+      <div class="icon">🌼</div>
+      <div class="date-label">Celebration 03</div>
+      <h3>Haldi</h3>
+      <div class="event-date">Thursday · 10 December 2026</div>
+      <p class="event-time">Timing to be announced</p>
+      <p>A bright celebration filled with marigolds, blessings, and family joy.</p>
+    </article>
+
+    <article class="card event-card">
+      <div class="icon">🪔</div>
+      <div class="date-label">Celebration 04</div>
+      <h3>Wedding Ceremony</h3>
+      <div class="event-date">Friday · 11 December 2026</div>
+      <p class="event-time">7:00 PM onwards</p>
+      <p>Join us for sacred rituals, heartfelt blessings, and the beginning of married life.</p>
+    </article>
+  </div>
+
+  <div class="venue-panel">
+    <div class="symbol">✧ 🪷 ✧</div>
+    <div class="date-label">Venue for all celebrations</div>
+    <h3>Hotel Indian Roller</h3>
+    <p><strong>Jagadhari Road, Ambala Cantt</strong></p>
+    <p>We look forward to celebrating these special moments with you.</p>
+  </div>
+
+  <div class="note">
+    <strong>Celebration timings</strong><br>
+    Engagement and wedding begin at 7:00 PM onwards. Timings for Mehndi and Haldi will be shared soon.
+  </div>
+
+</section>
+
+<!-- FEATURE 4: WEDDING PARTY -->
+<section id="party" class="page">
+  <div class="section-heading">
+    <div class="symbol">♛</div>
+    <h2>Our Wedding Party</h2>
+    <p>The wonderful people standing beside us on our special day.</p>
+  </div>
+
+  <div class="card-grid">
+    <article class="card">
+      <div class="icon">👰🏻</div>
+      <h3>The Bride</h3>
+      <p><strong>Shikha</strong></p>
+      <p>The heart of this beautiful celebration.</p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🤵🏻</div>
+      <h3>The Groom</h3>
+      <p><strong>Himanshu</strong></p>
+      <p>Ready for a lifetime of love and togetherness.</p>
+    </article>
+
+    <article class="card">
+      <div class="icon">👨‍👩‍👧‍👦</div>
+      <h3>Our Families</h3>
+      <p>Our roots, our strength, and our greatest blessings.</p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🫶</div>
+      <h3>Friends & Loved Ones</h3>
+      <p>Thank you for being part of our story and our joy.</p>
+    </article>
+  </div>
+
+
+  <section class="party-schedule" aria-labelledby="party-schedule-title">
+    <div class="section-heading">
+      <div class="symbol">✦ ॐ ✦</div>
+      <h2 id="party-schedule-title">Wedding Celebration Schedule</h2>
+      <p>Please join us for these special moments.</p>
+    </div>
+    <div class="schedule-list">
+      <article class="schedule-row">
+        <div class="schedule-date"><span>DEC</span><strong>09</strong><small>WEDNESDAY</small></div>
+        <div class="schedule-details"><h3>Engagement</h3><p>Wednesday, 9 December 2026</p><span class="schedule-time">7:00 PM onwards</span></div>
+        <span class="schedule-symbol">💍</span>
+      </article>
+      <article class="schedule-row">
+        <div class="schedule-date"><span>DEC</span><strong>10</strong><small>THURSDAY</small></div>
+        <div class="schedule-details"><h3>Mehndi</h3><p>Thursday, 10 December 2026</p><span class="schedule-time">Timing to be announced</span></div>
+        <span class="schedule-symbol">🌿</span>
+      </article>
+      <article class="schedule-row">
+        <div class="schedule-date"><span>DEC</span><strong>10</strong><small>THURSDAY</small></div>
+        <div class="schedule-details"><h3>Haldi</h3><p>Thursday, 10 December 2026</p><span class="schedule-time">Timing to be announced</span></div>
+        <span class="schedule-symbol">🌼</span>
+      </article>
+      <article class="schedule-row">
+        <div class="schedule-date"><span>DEC</span><strong>11</strong><small>FRIDAY</small></div>
+        <div class="schedule-details"><h3>Wedding Ceremony</h3><p>Friday, 11 December 2026</p><span class="schedule-time">7:00 PM onwards</span></div>
+        <span class="schedule-symbol">🪔</span>
+      </article>
+    </div>
+    <div class="schedule-venue">
+      <div class="symbol">❀ ॐ ❀</div>
+      <h3>Venue for All Celebrations</h3>
+      <p><strong>Hotel Indian Roller</strong></p>
+      <p>Jagadhari Road, Ambala Cantt</p>
+    </div>
+  </section>
+
+  <div class="featured" style="margin-top:30px">
+    <div class="big-icon">💌</div>
+    <h2>Your Presence Is Our Present</h2>
+    <p>
+      Your love, blessings, and good wishes mean the world to us.
+      We cannot wait to celebrate together!
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="floral">❀ ❋ ❀</div>
+  <div>With love and warm wishes</div>
+  <strong style="font-size:25px">Shikha & Himanshu</strong>
+  <div>Two families, one celebration, endless memories.</div>
+  <div class="floral">ॐ शुभ विवाह ॐ</div>
+</footer>
+
+<script>
+const navButtons = document.querySelectorAll("nav button");
+const pages = document.querySelectorAll(".page");
+
+navButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const pageId = button.dataset.page;
+
+    pages.forEach(page => {
+      page.classList.toggle("active", page.id === pageId);
+    });
+
+    navButtons.forEach(item => {
+      item.classList.toggle("active", item === button);
+    });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('[data-go-page]').forEach(function (button) {
+  button.addEventListener('click', function () {
+    var target = button.getAttribute('data-go-page');
+    var navButton = document.querySelector('nav button[data-page="' + target + '"]');
+    if (navButton) navButton.click();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shikha & Himanshu | Wedding Invitation</title>
+
+<style>
+:root {
+  --maroon: #711d32;
+  --deep: #421321;
+  --gold: #c6a15b;
+  --cream: #fff8ed;
+  --pink: #f4e2df;
+  --text: #4b3030;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 10%, #f4e2df 0, transparent 30%),
+    var(--cream);
+}
+
+button { font: inherit; }
+
+header {
+  text-align: center;
+  padding: 55px 20px 45px;
+  color: var(--cream);
+  background:
+    linear-gradient(#451321df, #451321ee),
+    radial-gradient(circle, #8e4550, #421321);
+  border-bottom: 5px double var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before,
+header::after {
+  content: "❋";
+  position: absolute;
+  color: #d8b56e;
+  font-size: 115px;
+  opacity: .25;
+  top: 15px;
+}
+
+header::before { left: 4%; }
+header::after { right: 4%; }
+
+.om {
+  color: #e8c77d;
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: #f1d99e;
+}
+
+h1 {
+  font-size: clamp(40px, 8vw, 76px);
+  font-weight: normal;
+  margin: 18px 0 8px;
+  color: #fff4d9;
+}
+
+.ampersand { color: var(--gold); font-style: italic; }
+
+.subtitle {
+  font-size: 18px;
+  font-style: italic;
+  color: #f5dfbb;
+}
+
+.invite-line {
+  margin-top: 24px;
+  color: #f5dfbb;
+  line-height: 1.8;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #fffaf2f5;
+  border-bottom: 1px solid #ddc48d;
+  backdrop-filter: blur(8px);
+}
+
+nav button {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--maroon);
+  border-radius: 30px;
+  padding: 10px 17px;
+  cursor: pointer;
+  transition: .25s;
+}
+
+nav button:hover,
+nav button.active {
+  color: white;
+  background: var(--maroon);
+  border-color: var(--gold);
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 28px 18px 55px;
+}
+
+.page { display: none; animation: fade .4s ease; }
+.page.active { display: block; }
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-heading {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.section-heading .symbol {
+  color: var(--gold);
+  font-size: 30px;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: clamp(28px, 5vw, 42px);
+  color: var(--maroon);
+  margin: 8px 0;
+}
+
+.section-heading p { color: #866b5a; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  position: relative;
+  padding: 28px 22px;
+  text-align: center;
+  background: #fffdf8;
+  border: 1px solid #d9bd80;
+  outline: 1px solid #eadbb8;
+  outline-offset: -7px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px #4b1c2710;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px #4b1c2720;
+}
+
+.icon {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--pink);
+  border: 1px solid var(--gold);
+  font-size: 34px;
+}
+
+.card h3 {
+  color: var(--maroon);
+  font-size: 23px;
+  font-weight: normal;
+  margin: 10px 0;
+}
+
+.card p { line-height: 1.7; font-size: 15px; }
+
+.date-label {
+  color: #9a7437;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.featured {
+  background: linear-gradient(145deg, #fffaf0, #f2dfdc);
+  padding: 35px 22px;
+  border-radius: 12px;
+  border: 1px solid var(--gold);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.featured .big-icon { font-size: 50px; }
+
+.featured p {
+  max-width: 650px;
+  margin: 12px auto;
+  line-height: 1.9;
+}
+
+.photo-art {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #f4e3d4, #dfb7b1);
+  border: 1px solid #d7b56c;
+  font-size: 65px;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-art::after {
+  content: "❀  ✦  ❀";
+  position: absolute;
+  bottom: 8px;
+  font-size: 17px;
+  color: #8b5c36;
+  letter-spacing: 8px;
+}
+
+.photo-card {
+  padding: 12px 12px 20px;
+}
+
+.photo-card .photo-art { margin-bottom: 15px; }
+
+.photo-card h3 { margin-bottom: 5px; }
+
+.note {
+  margin-top: 25px;
+  padding: 18px;
+  text-align: center;
+  background: #f7eae2;
+  border-left: 3px solid var(--gold);
+  line-height: 1.8;
+}
+
+.action-button {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  background: var(--maroon);
+  color: white;
+  padding: 12px 22px;
+  margin-top: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.action-button:hover { background: var(--deep); }
+
+footer {
+  text-align: center;
+  padding: 35px 15px;
+  color: #f8e9ce;
+  background: var(--deep);
+  border-top: 4px double var(--gold);
+  line-height: 1.9;
+}
+
+footer .floral { color: var(--gold); font-size: 26px; }
+
+@media (max-width: 600px) {
+  header { padding: 42px 15px 35px; }
+  header::before, header::after { font-size: 65px; }
+  nav { gap: 3px; padding: 8px 4px; }
+  nav button { padding: 9px 11px; font-size: 13px; }
+  main { padding: 15px 12px 35px; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="om">ॐ</div>
+  <div class="eyebrow">With the blessings of our families</div>
+  <h1>Shikha <span class="ampersand">&</span> Himanshu</h1>
+  <div class="subtitle">Two hearts, one beautiful journey</div>
+  <div class="invite-line">
+    Together with our families<br>
+    we invite you to celebrate our wedding
+  </div>
+</header>
+
+<nav aria-label="Wedding sections">
+  <button class="active" data-page="story">❀ Our Story</button>
+  <button data-page="photos">♡ Photos</button>
+  <button data-page="events">✧ Things to Do</button>
+  <button data-page="party">♛ Wedding Party</button>
+</nav>
+
+<main>
+
+<!-- FEATURE 1: OUR STORY -->
+<section id="story" class="page active">
+  <div class="section-heading">
+    <div class="symbol">❦</div>
+    <h2>Our Beautiful Story</h2>
+    <p>A little love, a little destiny, and a lifetime together.</p>
+  </div>
+
+  <div class="featured">
+    <div class="big-icon">💑</div>
+    <h2>Shikha & Himanshu</h2>
+    <p>
+      Some journeys are written in the stars. Ours is a story of
+      love, laughter, family, and the promise of forever.
+      We are delighted to begin this new chapter and share our
+      special day with the people who mean the most to us.
+    </p>
+    <div class="floral">❀ ✦ ❀</div>
+  </div>
+
+  <div class="card-grid">
+    <article class="card">
+      <div class="icon">🌸</div>
+      <h3>How It Began</h3>
+      <p>
+        Every beautiful story begins with a special moment.
+        Ours brought two hearts together and gave us a reason
+        to dream about forever.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">💞</div>
+      <h3>A Promise of Love</h3>
+      <p>
+        With love and the blessings of our families,
+        we look forward to sharing every tomorrow,
+        every celebration, and every little moment.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🪷</div>
+      <h3>A New Beginning</h3>
+      <p>
+        A new chapter, new memories, and a lifetime of
+        togetherness. Your blessings will make our celebration
+        even more meaningful.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- FEATURE 2: PHOTOS -->
+<section id="photos" class="page">
+  <div class="section-heading">
+    <div class="symbol">❀</div>
+    <h2>Our Memories</h2>
+    <p>Little moments that become lifelong memories.</p>
+  </div>
+
+  <div class="card-grid">
+    <article class="card photo-card">
+      <div class="photo-art">💍</div>
+      <h3>The Engagement</h3>
+      <p>A beautiful beginning, filled with promises and smiles.</p>
+    </article>
+
+    <article class="card photo-card">
+      <div class="photo-art">🌿</div>
+      <h3>Mehndi Moments</h3>
+      <p>Colourful traditions, music, laughter, and family.</p>
+    </article>
+
+    <article class="card photo-card">
+      <div class="photo-art">👰🏻</div>
+      <h3>The Wedding Day</h3>
+      <p>The day two hearts begin their forever together.</p>
+    </article>
+
+    <article class="card photo-card">
+      <div class="photo-art">🥂</div>
+      <h3>Love & Laughter</h3>
+      <p>Celebrating the people who make life beautiful.</p>
+    </article>
+  </div>
+
+  <div class="note">
+    <strong>Make it personal!</strong><br>
+    These are decorative placeholders. To show real photos,
+    replace each <code>photo-art</code> block with an image, for example:
+    <br><code>&lt;img src="couple.jpg" alt="Shikha and Himanshu"&gt;</code>
+  </div>
+</section>
+
+<!-- FEATURE 3: THINGS TO DO -->
+<section id="events" class="page">
+  <div class="section-heading">
+    <div class="symbol">✧</div>
+    <h2>Wedding Celebrations</h2>
+    <p>Come for the rituals, stay for the memories!</p>
+  </div>
+
+  <div class="card-grid">
+    <article class="card">
+      <div class="icon">🌼</div>
+      <div class="date-label">Event 01</div>
+      <h3>Haldi</h3>
+      <p>
+        Sunshine, marigolds, blessings, and happy moments
+        as we begin our wedding festivities.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🌿</div>
+      <div class="date-label">Event 02</div>
+      <h3>Mehndi</h3>
+      <p>
+        Beautiful henna, joyful music, colourful outfits,
+        and unforgettable moments with loved ones.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🥁</div>
+      <div class="date-label">Event 03</div>
+      <h3>Sangeet</h3>
+      <p>
+        Bring your dancing shoes! Let's fill the evening
+        with music, performances, and celebration.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🔥</div>
+      <div class="date-label">Event 04</div>
+      <h3>Wedding Ceremony</h3>
+      <p>
+        Join us for sacred rituals, heartfelt blessings,
+        and the beginning of our married life.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🍽️</div>
+      <div class="date-label">Event 05</div>
+      <h3>Wedding Feast</h3>
+      <p>
+        Good food, warm company, and a joyful celebration
+        shared with family and friends.
+      </p>
+    </article>
+
+    <article class="card">
+      <div class="icon">📸</div>
+      <div class="date-label">All celebrations</div>
+      <h3>Make Memories</h3>
+      <p>
+        Dress up, take pictures, share your blessings,
+        and celebrate this special occasion with us.
+      </p>
+    </article>
+  </div>
+
+  <div class="note">
+    <strong>Event details</strong><br>
+    Add the actual dates, timings, and venue before sharing
+    this invitation with your guests.
+  </div>
+</section>
+
+<!-- FEATURE 4: WEDDING PARTY -->
+<section id="party" class="page">
+  <div class="section-heading">
+    <div class="symbol">♛</div>
+    <h2>Our Wedding Party</h2>
+    <p>The wonderful people standing beside us on our special day.</p>
+  </div>
+
+  <div class="card-grid">
+    <article class="card">
+      <div class="icon">👰🏻</div>
+      <h3>The Bride</h3>
+      <p><strong>Shikha</strong></p>
+      <p>The heart of this beautiful celebration.</p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🤵🏻</div>
+      <h3>The Groom</h3>
+      <p><strong>Himanshu</strong></p>
+      <p>Ready for a lifetime of love and togetherness.</p>
+    </article>
+
+    <article class="card">
+      <div class="icon">👨‍👩‍👧‍👦</div>
+      <h3>Our Families</h3>
+      <p>Our roots, our strength, and our greatest blessings.</p>
+    </article>
+
+    <article class="card">
+      <div class="icon">🫶</div>
+      <h3>Friends & Loved Ones</h3>
+      <p>Thank you for being part of our story and our joy.</p>
+    </article>
+  </div>
+
+  <div class="featured" style="margin-top:30px">
+    <div class="big-icon">💌</div>
+    <h2>Your Presence Is Our Present</h2>
+    <p>
+      Your love, blessings, and good wishes mean the world to us.
+      We cannot wait to celebrate together!
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="floral">❀ ❋ ❀</div>
+  <div>With love and warm wishes</div>
+  <strong style="font-size:25px">Shikha & Himanshu</strong>
+  <div>Two families, one celebration, endless memories.</div>
+  <div class="floral">ॐ शुभ विवाह ॐ</div>
+</footer>
+
+<script>
+const navButtons = document.querySelectorAll("nav button");
+const pages = document.querySelectorAll(".page");
+
+navButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const pageId = button.dataset.page;
+
+    pages.forEach(page => {
+      page.classList.toggle("active", page.id === pageId);
+    });
+
+    navButtons.forEach(item => {
+      item.classList.toggle("active", item === button);
+    });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+</script>
+
+</body>
+</html>

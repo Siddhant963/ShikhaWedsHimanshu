@@ -1,0 +1,1085 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#641b30">
+<title>Shikha & Himanshu | Wedding Invitation</title>
+
+<style>
+:root {
+  --maroon: #641b30;
+  --dark: #35101e;
+  --gold: #d3b16a;
+  --ivory: #fff8ec;
+  --text: #573344;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background: var(--ivory);
+}
+
+button { font: inherit; }
+
+/* ========== OPENING ENVELOPE ========== */
+
+#envelopeIntro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow-y: auto;
+  background:
+    radial-gradient(ellipse at center, #fffdf6, #ead5b3);
+  transition: opacity .9s ease, visibility .9s ease;
+}
+
+#envelopeIntro.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-stage {
+  width: min(640px, 100%);
+  text-align: center;
+  padding: 18px 0;
+}
+
+.shubh {
+  color: #946c2c;
+  font-size: 17px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.intro-title {
+  color: var(--maroon);
+  font-size: clamp(25px, 5vw, 40px);
+  font-weight: normal;
+  margin: 0 0 10px;
+}
+
+.intro-subtitle {
+  color: #785b49;
+  line-height: 1.7;
+  font-size: 14px;
+  margin: 0 auto 28px;
+}
+
+#openEnvelope {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.4 / 1;
+  max-height: 430px;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+  filter: drop-shadow(0 18px 18px #35101e35);
+}
+
+#openEnvelope:focus-visible {
+  outline: 3px solid #a67c35;
+  outline-offset: 5px;
+}
+
+/* Paper inside the envelope */
+.paper {
+  position: absolute;
+  z-index: 1;
+  top: 4%;
+  left: 7%;
+  width: 86%;
+  height: 91%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--maroon);
+  background: linear-gradient(135deg, #fffdf7, #f4e3c2);
+  border: 2px solid var(--gold);
+  transition: transform 1.1s ease;
+}
+
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #d4b46d;
+  pointer-events: none;
+}
+
+.paper-om {
+  font-size: 29px;
+  color: #a77b2e;
+}
+
+.paper-names {
+  font-size: clamp(19px, 4vw, 33px);
+  margin: 8px 0;
+}
+
+.paper-date {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.paper-message {
+  font-size: 12px;
+  margin-top: 9px;
+}
+
+/* Envelope body */
+.envelope-body {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  overflow: hidden;
+  border: 2px solid var(--gold);
+  border-radius: 5px;
+  background:
+    linear-gradient(140deg, #8a3049, #681b32 55%, #421222);
+}
+
+.envelope-body::before {
+  content: "❋  ❀  ❋  ❀  ❋  ❀  ❋";
+  position: absolute;
+  inset: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 12px;
+  border: 1px solid #e3c47d;
+  color: #f0d99c;
+  letter-spacing: 3px;
+  font-size: clamp(10px, 2.3vw, 17px);
+}
+
+/* Opening flap */
+.envelope-flap {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  transform-origin: top center;
+  background: linear-gradient(145deg, #9a3d53, #67182e);
+  clip-path: polygon(0 0, 100% 0, 50% 68%);
+  transition: transform .9s ease;
+}
+
+/* Ganesh Ji seal */
+.ganesh-seal {
+  position: absolute;
+  z-index: 5;
+  top: 19%;
+  left: 50%;
+  width: clamp(108px, 25vw, 160px);
+  aspect-ratio: 1;
+  padding: 6px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #fff0b4, #b47d28, #f8df94);
+  box-shadow: 0 0 0 3px #e4c274, 0 5px 15px #26071470;
+  transition: opacity .35s ease, transform .5s ease;
+}
+
+.ganesh-art {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff0bd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f5e4c1;
+}
+
+.ganesh-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ganesh-fallback {
+  font-size: 55px;
+  color: #9b263f;
+  line-height: 1;
+}
+
+/* Opening animation class */
+#envelopeIntro.opening .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+#envelopeIntro.opening .ganesh-seal {
+  opacity: 0;
+  transform: translateX(-50%) scale(.65);
+}
+
+#envelopeIntro.opening .paper {
+  transform: translateY(-42%);
+}
+
+.couple-title {
+  color: var(--maroon);
+  font-size: clamp(25px, 5vw, 40px);
+  margin: 24px 0 7px;
+  font-weight: normal;
+}
+
+.date-title {
+  color: #916c32;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.open-hint {
+  color: #765a49;
+  font-size: 13px;
+  margin-top: 22px;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: .5; }
+}
+
+/* ========== MAIN WEBSITE ========== */
+
+#mainWebsite {
+  display: block;
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  color: var(--ivory);
+  padding: 55px 20px 42px;
+  background:
+    radial-gradient(ellipse at top, #8a344b, transparent 65%),
+    linear-gradient(145deg, #421222, #701d35, #35101e);
+  border-bottom: 5px double var(--gold);
+}
+
+.hero-om {
+  color: #f0d99c;
+  font-size: 32px;
+}
+
+.hero small {
+  color: #f0d99c;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 17px 0;
+  font-size: clamp(38px, 7vw, 68px);
+  font-weight: normal;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero p {
+  line-height: 1.8;
+  color: #f7e7cf;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  background: #fff8ec;
+  border-bottom: 1px solid #e4d0a8;
+}
+
+nav button {
+  border: 1px solid transparent;
+  border-radius: 25px;
+  padding: 10px 15px;
+  color: var(--maroon);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+nav button:hover,
+nav button.active {
+  color: white;
+  background: var(--maroon);
+  border-color: var(--gold);
+}
+
+main {
+  width: min(1100px, 100%);
+  margin: auto;
+  padding: 28px 18px 55px;
+}
+
+.page {
+  display: none;
+  animation: appear .35s ease;
+}
+
+.page.active { display: block; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-heading {
+  text-align: center;
+  margin: 18px 0 35px;
+}
+
+.section-heading .ornament {
+  color: #b48a3c;
+  letter-spacing: 7px;
+}
+
+.section-heading h2 {
+  font-size: clamp(29px, 5vw, 43px);
+  color: var(--maroon);
+  font-weight: normal;
+  margin: 12px 0;
+}
+
+.section-heading p {
+  line-height: 1.7;
+  color: #80604e;
+}
+
+/* ========== OUR STORY ROADMAP ========== */
+
+.story-intro {
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 15px;
+  align-items: stretch;
+}
+
+.story-lane {
+  min-width: 0;
+  position: relative;
+  padding: 15px 10px 25px;
+  border: 1px solid #e5d0a6;
+  border-radius: 14px;
+  background: #fffdf8;
+  box-shadow: 0 8px 24px #35101e0b;
+}
+
+.story-profile {
+  text-align: center;
+  position: sticky;
+  top: 64px;
+  z-index: 5;
+  background: #fffdf8;
+  padding: 12px 4px 16px;
+  border-bottom: 1px solid #eadbbd;
+}
+
+.story-profile .avatar {
+  width: clamp(66px, 12vw, 112px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin: auto;
+  border: 3px solid var(--gold);
+  background: #f0dfbf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--maroon);
+  font-size: 28px;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-profile h3 {
+  color: var(--maroon);
+  font-size: clamp(18px, 3vw, 25px);
+  font-weight: normal;
+  margin: 10px 0 4px;
+}
+
+.story-profile p {
+  font-size: 12px;
+  color: #98784b;
+  margin: 0;
+}
+
+.story-timeline {
+  position: relative;
+  padding: 20px 0 0 18px;
+  margin-left: 4px;
+}
+
+.story-timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 22px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(var(--gold), #e9d8b4);
+}
+
+.milestone {
+  position: relative;
+  margin: 0 0 18px;
+  padding: 14px 11px;
+  border-radius: 8px;
+  background: #faf0de;
+  border: 1px solid #ead5aa;
+}
+
+.milestone::before {
+  content: "";
+  position: absolute;
+  left: -19px;
+  top: 20px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #fff8ec;
+  border-radius: 50%;
+  background: #ad8035;
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.milestone .year {
+  color: #a17a36;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.milestone h4 {
+  color: var(--maroon);
+  font-size: 16px;
+  font-weight: normal;
+  margin: 7px 0;
+}
+
+.milestone p {
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ========== PHOTOS ========== */
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.photo-card {
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e4d0a8;
+  background: white;
+  text-align: center;
+  box-shadow: 0 8px 20px #35101e0c;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  background: #f1e1c6;
+}
+
+.photo-card h3 {
+  color: var(--maroon);
+  font-weight: normal;
+  padding: 10px;
+}
+
+/* ========== WEDDING EVENTS ========== */
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.event-card {
+  text-align: center;
+  padding: 25px 18px;
+  border: 1px solid #dfc48a;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fffdf8, #f7e9d0);
+}
+
+.event-icon { font-size: 37px; }
+
+.event-card h3 {
+  color: var(--maroon);
+  font-size: 25px;
+  font-weight: normal;
+  margin: 12px 0;
+}
+
+.event-date {
+  color: #9a7538;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.event-card p {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.venue-card {
+  text-align: center;
+  margin-top: 25px;
+  padding: 28px 15px;
+  border: 1px solid #d8bb7d;
+  border-radius: 12px;
+  background: #fffdf8;
+}
+
+.venue-card h3 {
+  color: var(--maroon);
+  font-weight: normal;
+  font-size: 26px;
+}
+
+.venue-card p { line-height: 1.8; }
+
+/* ========== WEDDING PARTY ========== */
+
+.party-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.party-card {
+  text-align: center;
+  padding: 26px 15px;
+  border: 1px solid #e2cfa5;
+  border-radius: 12px;
+  background: #fffdf8;
+}
+
+.party-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 75px;
+  margin: auto;
+  border-radius: 50%;
+  color: var(--maroon);
+  background: #f4e5c7;
+  border: 2px solid var(--gold);
+  font-size: 29px;
+}
+
+.party-card h3 {
+  font-size: 21px;
+  font-weight: normal;
+  color: var(--maroon);
+}
+
+.party-card p { line-height: 1.7; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 32px 15px;
+  color: #fff0d1;
+  background: var(--dark);
+  border-top: 4px double var(--gold);
+  line-height: 1.9;
+}
+
+footer .ornament {
+  color: var(--gold);
+  letter-spacing: 5px;
+}
+
+/* Responsive: keep story columns side by side */
+@media (max-width: 600px) {
+  .hero { padding: 42px 14px 32px; }
+
+  nav { gap: 2px; padding: 7px 3px; }
+
+  nav button {
+    padding: 9px 8px;
+    font-size: 11px;
+  }
+
+  main { padding: 20px 10px 40px; }
+
+  .story-grid { gap: 7px; }
+
+  .story-lane { padding: 7px 5px 15px; }
+
+  .story-profile { top: 52px; padding: 8px 2px 12px; }
+
+  .story-profile h3 { font-size: clamp(16px, 4vw, 21px); }
+
+  .story-profile p { font-size: 10px; }
+
+  .story-timeline { padding-left: 13px; margin-left: 2px; }
+
+  .story-timeline::before { left: 3px; }
+
+  .milestone { padding: 10px 7px; }
+
+  .milestone::before { left: -16px; width: 7px; height: 7px; }
+
+  .milestone h4 { font-size: 13px; }
+
+  .milestone p { font-size: 11px; line-height: 1.5; }
+
+  .milestone .year { font-size: 9px; }
+
+  .photo-grid,
+  .events-grid,
+  .party-grid { gap: 10px; }
+
+  .photo-card img { height: 190px; }
+
+  .event-card { padding: 20px 8px; }
+
+  .event-card h3 { font-size: 20px; }
+
+  .event-card p { font-size: 12px; }
+
+  .party-card { padding: 20px 8px; }
+
+  .party-card h3 { font-size: 17px; }
+
+  .paper { padding: 8px; }
+}
+
+@media (max-width: 360px) {
+  .story-grid { gap: 5px; }
+
+  .story-lane { padding-left: 4px; padding-right: 4px; }
+
+  .story-profile .avatar { width: 60px; }
+
+  .milestone { padding: 8px 5px; }
+
+  .milestone h4 { font-size: 12px; }
+
+  .milestone p { font-size: 10px; }
+
+  .paper-names { font-size: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENVELOPE: click anywhere on it to open -->
+<div id="envelopeIntro">
+  <div class="envelope-stage">
+    <div class="shubh">॥ श्री गणेशाय नमः ॥</div>
+    <h2 class="intro-title">A Celebration of Love</h2>
+    <p class="intro-subtitle">
+      With the blessings of Shri Ganesh Ji, please join us
+      as we celebrate a beautiful new beginning.
+    </p>
+
+    <button id="openEnvelope" type="button"
+      aria-label="Open wedding invitation">
+
+      <div class="paper">
+        <div class="paper-om">ॐ</div>
+        <div class="paper-names">Shikha & Himanshu</div>
+        <div class="paper-date">11 DECEMBER 2026</div>
+        <div class="paper-message">You are cordially invited</div>
+      </div>
+
+      <div class="envelope-body"></div>
+      <div class="envelope-flap"></div>
+
+      <div class="ganesh-seal">
+        <div class="ganesh-art">
+          <img src="assets/ganesh-medallion.jpg"
+            alt="Shri Ganesh Ji"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="ganesh-fallback" style="display:none">ॐ</span>
+        </div>
+      </div>
+    </button>
+
+    <h1 class="couple-title">Shikha <span style="color:#b58a39">&</span> Himanshu</h1>
+    <div class="date-title">11 · 12 · 2026</div>
+    <div class="open-hint">✦ Tap the envelope to open ✦</div>
+  </div>
+</div>
+
+<!-- WEBSITE -->
+<div id="mainWebsite">
+
+  <header class="hero">
+    <div class="hero-om">॥ श्री गणेशाय नमः ॥</div>
+    <small>Together with our families</small>
+    <h1>Shikha <span>&</span> Himanshu</h1>
+    <p class="subtitle">Two hearts, one beautiful journey.</p>
+    <p class="invite-line">
+      With love and blessings, we invite you to celebrate<br>
+      the beginning of our forever.
+    </p>
+    <div style="color:#f0d99c;font-size:22px;margin-top:20px">
+      ❋ &nbsp; ❀ &nbsp; ❋
+    </div>
+  </header>
+
+  <nav aria-label="Wedding website navigation">
+    <button class="active" data-page="story">Our Story</button>
+    <button data-page="photos">Photos</button>
+    <button data-page="events">Wedding Celebrations</button>
+    <button data-page="party">Wedding Party</button>
+  </nav>
+
+  <main>
+
+    <!-- OUR STORY -->
+    <section class="page active" id="story">
+      <div class="section-heading">
+        <div class="ornament">❋ ❀ ❋</div>
+        <h2>Our Story</h2>
+        <p>Two journeys, two families, one beautiful destination.</p>
+      </div>
+
+      <p class="story-intro">
+        Every love story is special. This is where our journey
+        begins. Our personal milestones will be added here.
+      </p>
+
+      <div class="story-grid">
+
+        <!-- BRIDE'S STORY -->
+        <article class="story-lane">
+          <div class="story-profile">
+            <div class="avatar">
+              <img src="assets/bride-portrait.jpg"
+                alt="Shikha"
+                onerror="this.style.display='none';this.parentElement.textContent='S'">
+            </div>
+            <h3>Shikha</h3>
+            <p>The Bride</p>
+          </div>
+
+          <div class="story-timeline">
+            <div class="milestone">
+              <div class="year">Chapter 01</div>
+              <h4>My Beginning</h4>
+              <p>Every beautiful journey begins with a story. Our personal memories will go here.</p>
+            </div>
+            <div class="milestone">
+              <div class="year">Chapter 02</div>
+              <h4>Dreams & Memories</h4>
+              <p>The moments, people and dreams that shaped my journey.</p>
+            </div>
+            <div class="milestone">
+              <div class="year">Chapter 03</div>
+              <h4>A New Chapter</h4>
+              <p>A new journey filled with love, family and countless possibilities.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- GROOM'S STORY -->
+        <article class="story-lane">
+          <div class="story-profile">
+            <div class="avatar">
+              <img src="assets/groom-portrait.jpg"
+                alt="Himanshu"
+                onerror="this.style.display='none';this.parentElement.textContent='H'">
+            </div>
+            <h3>Himanshu</h3>
+            <p>The Groom</p>
+          </div>
+
+          <div class="story-timeline">
+            <div class="milestone">
+              <div class="year">Chapter 01</div>
+              <h4>My Beginning</h4>
+              <p>Every chapter brings new lessons, wonderful memories and new dreams.</p>
+            </div>
+            <div class="milestone">
+              <div class="year">Chapter 02</div>
+              <h4>Life's Adventures</h4>
+              <p>The experiences and people who made this journey meaningful.</p>
+            </div>
+            <div class="milestone">
+              <div class="year">Chapter 03</div>
+              <h4>Forever Begins</h4>
+              <p>Looking forward to a lifetime of companionship, laughter and love.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section class="page" id="photos">
+      <div class="section-heading">
+        <div class="ornament">❋ ❀ ❋</div>
+        <h2>Our Photos</h2>
+        <p>A collection of moments worth remembering.</p>
+      </div>
+
+      <div class="photo-grid">
+        <div class="photo-card">
+          <img src="assets/bride-portrait.jpg" alt="Shikha"
+            onerror="this.style.display='none'">
+          <h3>Shikha</h3>
+        </div>
+        <div class="photo-card">
+          <img src="assets/groom-portrait.jpg" alt="Himanshu"
+            onerror="this.style.display='none'">
+          <h3>Himanshu</h3>
+        </div>
+        <div class="photo-card">
+          <img src="assets/couple-portrait.jpg" alt="Couple portrait"
+            onerror="this.style.display='none'">
+          <h3>Together</h3>
+        </div>
+        <div class="photo-card">
+          <img src="assets/couple-front-page.jpg" alt="Wedding couple"
+            onerror="this.style.display='none'">
+          <h3>Our Journey</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEDDING CELEBRATIONS -->
+    <section class="page" id="events">
+      <div class="section-heading">
+        <div class="ornament">❋ ❀ ❋</div>
+        <h2>Wedding Celebrations</h2>
+        <p>Join us for the festivities, blessings and beautiful memories.</p>
+      </div>
+
+      <div class="events-grid">
+        <article class="event-card">
+          <div class="event-icon">💍</div>
+          <h3>Engagement</h3>
+          <div class="event-date">9 DECEMBER 2026</div>
+          <p>7 PM onwards</p>
+        </article>
+
+        <article class="event-card">
+          <div class="event-icon">🌿</div>
+          <h3>Mehndi</h3>
+          <div class="event-date">10 DECEMBER 2026</div>
+          <p>Timing to be announced</p>
+        </article>
+
+        <article class="event-card">
+          <div class="event-icon">🌼</div>
+          <h3>Haldi</h3>
+          <div class="event-date">10 DECEMBER 2026</div>
+          <p>Timing to be announced</p>
+        </article>
+
+        <article class="event-card">
+          <div class="event-icon">🪔</div>
+          <h3>Wedding</h3>
+          <div class="event-date">11 DECEMBER 2026</div>
+          <p>7 PM onwards</p>
+        </article>
+      </div>
+
+      <div class="venue-card">
+        <div class="event-icon">📍</div>
+        <h3>Wedding Venue</h3>
+        <p><strong>Hotel Indian Roller</strong></p>
+        <p>Jagadhari Road, Ambala Cantt</p>
+      </div>
+    </section>
+
+    <!-- WEDDING PARTY -->
+    <section class="page" id="party">
+      <div class="section-heading">
+        <div class="ornament">❋ ❀ ❋</div>
+        <h2>Wedding Party</h2>
+        <p>Celebrating with the people closest to our hearts.</p>
+      </div>
+
+      <div class="party-grid">
+        <article class="party-card">
+          <div class="party-avatar">♡</div>
+          <h3>Shikha's Family</h3>
+          <p>With love, blessings and heartfelt wishes.</p>
+        </article>
+
+        <article class="party-card">
+          <div class="party-avatar">♡</div>
+          <h3>Himanshu's Family</h3>
+          <p>With joy as two families come together.</p>
+        </article>
+
+        <article class="party-card">
+          <div class="party-avatar">✿</div>
+          <h3>Friends</h3>
+          <p>For the laughter, memories and celebrations.</p>
+        </article>
+
+        <article class="party-card">
+          <div class="party-avatar">❀</div>
+          <h3>Well-Wishers</h3>
+          <p>Your presence and blessings mean the world to us.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="ornament">❋ ❀ ❋</div>
+    <div>Shikha & Himanshu</div>
+    <div>11 December 2026</div>
+    <div>Made with love and blessings.</div>
+    <div class="ornament">॥ श्री गणेशाय नमः ॥</div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const intro = document.getElementById("envelopeIntro");
+  const envelope = document.getElementById("openEnvelope");
+  const navButtons = document.querySelectorAll("nav button[data-page]");
+  const pages = document.querySelectorAll(".page");
+
+  let isOpening = false;
+
+  /*
+   * Envelope click handler.
+   * Animation runs once, then removes the intro overlay.
+   */
+  function openInvitation() {
+    if (isOpening) return;
+    isOpening = true;
+
+    intro.classList.add("opening");
+
+    // Reveal the site after the envelope animation.
+    window.setTimeout(function () {
+      document.body.classList.add("invitation-open");
+      document.body.classList.remove("invitation-locked");
+      intro.classList.add("opened");
+
+      // Remove the overlay completely after fading out.
+      window.setTimeout(function () {
+        if (intro && intro.parentNode) {
+          intro.parentNode.removeChild(intro);
+        }
+      }, 1000);
+
+    }, 1250);
+  }
+
+  // Attach the click listener directly to the envelope button.
+  envelope.addEventListener("click", openInvitation);
+
+  // Keyboard accessibility.
+  envelope.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openInvitation();
+    }
+  });
+
+  /*
+   * Navigation: show one section at a time.
+   */
+  navButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const targetId = button.getAttribute("data-page");
+      const targetPage = document.getElementById(targetId);
+
+      if (!targetPage) return;
+
+      pages.forEach(function (page) {
+        page.classList.remove("active");
+      });
+
+      navButtons.forEach(function (navButton) {
+        navButton.classList.remove("active");
+      });
+
+      targetPage.classList.add("active");
+      button.classList.add("active");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  });
+
+  /*
+   * If JavaScript runs successfully, the envelope remains
+   * visible until clicked. The main site is behind the overlay.
+   * If an error occurs, the visitor can still use the website
+   * by removing the overlay through this safety fallback.
+   */
+  window.addEventListener("error", function () {
+    // Do not automatically skip the envelope for ordinary errors.
+    // The main content remains in the document behind the overlay.
+  });
+
+})();
+</script>
+
+</body>
+</html>
